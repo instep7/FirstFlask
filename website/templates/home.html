@@ -1,5 +1,22 @@
 {% extends "base.html" %} {% block title %}Home{% endblock %}
 
 {% block content %}
-<h1>This is the home page</h1>
+<h1 align="center">Notes</h1>
+<ul class="list-group list-group-flush" id="notes">
+    {% for note in user.notes %}
+    <li class="list-group-item">
+        <div class="row">
+            <div class="col-sm" align="left">{{ note.data }}</div>
+            <div class="col-sm" align="right"><a href="/delete-note/{{ note.id }}" class="btn btn-outline-danger btn-sm">Delete</a></div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+<form method="POST">
+    <textarea name="note" id="note" class="form-control"></textarea>
+    <br/>
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Add Note</button>
+    </div>
+</form>
 {% endblock %}
