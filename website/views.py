@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, jsonify
+from flask import Blueprint, render_template, request, flash, jsonify, redirect, url_for
 from flask_login import login_required, current_user
 from .models import Note
 from. import db
@@ -30,7 +30,8 @@ def delete_note(id):
     db.session.delete(note)
     db.session.commit()
 
-    return render_template("home.html", user=current_user)
+    return redirect(url_for('views.home'))
+    #return render_template("home.html", user=current_user)
 
 
     # note = json.loads(request.data)
